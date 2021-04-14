@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html > 
+    <head>
+        <title>Facial Recognition System</title>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        {% block head_block %}
+          
+        {% endblock head_block %}
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Facial Recognition System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url 'hq:new_entry' %}">Add User</a>
+                    <a class="nav-item nav-link" href="{% url 'admin:index'%}">Admin Access</a>
+                    <a class="nav-item nav-link" href="{% url 'hq:streamer'%}">Start Stream</a>
+                    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'hq:search' %}">          
+                        <label class="nav-item nav-link" for="query" >Search Record:</label>
+                        <input name="q" value="{{request.GET.q}}" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="nav-item nav-link" type="submit"> Search </button>
+                    </form>
+                    {% if request.user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">  Logout</a>   
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'reg_sign_in_out:user_login' %}">   Login</a>
+                    {% endif %}
+                  <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+                </div>
+              </div>
+          </nav>
+   
+          {% block body_block %}
+          
+          {% endblock body_block %}
+
+          
+<script src="/static/js/jquery-3.5.1.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'js/infinite.js' %}"></script>
+    </body>
+</html>

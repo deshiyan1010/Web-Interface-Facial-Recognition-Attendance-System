@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'reg_sign_in_out/reg.css'%}">
+{% endblock head_block %}
+{% block body_block %}
+
+<h1>amount:{{payment.amount}}</h1>
+<form  method="POST"> 
+    {% csrf_token %}
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_iCqL53D2oVdlIL" 
+        data-amount="{{payment.amount}}"
+        data-currency="INR"
+        data-order_id="{{payment.id}}"
+        data-buttontext="Pay with Razorpay"
+        data-name="Robo Corp"
+        data-description="Test transaction"
+        data-image="https://example.com/your_logo.jpg"
+        data-prefill.name="Gaurav Kumar"
+        data-prefill.email="gaurav.kumar@example.com"
+        data-prefill.contact="9999999999"
+        data-theme.color="#F37254"
+    ></script>
+    <input type="hidden" custom="Hidden Element" name="hidden">
+    </form>
+{% endblock %}

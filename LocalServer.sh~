@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+conda init bash
+conda activate pytorch_env
+python manage.py runserver

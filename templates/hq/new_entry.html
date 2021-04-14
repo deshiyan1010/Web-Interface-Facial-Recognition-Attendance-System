@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head_block %}
+{% endblock head_block %}
+{% block body_block %}
+<div class="bg">
+    <h3 id="fill">New User</h3>
+    <div id="form">
+        <div class="float_left container">
+            <form enctype="multipart/form-data" method="post">
+                <div class="block">
+                    {% csrf_token %}
+                </div>        
+                {{ form|crispy }}        
+                {% csrf_token %}
+                <input type="submit" value="Submit" id="sub">
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
